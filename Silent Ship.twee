@@ -1,0 +1,159 @@
+:: StoryTitle
+Silent Ship
+
+
+:: StoryData
+{
+  "ifid": "74E5F6DE-8B27-4761-AFA5-095B9E708F16",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Awakening",
+  "zoom": 1
+}
+
+
+:: AI Activation {"position":"575,625","size":"100,100"}
+"Greetings, Survivor. I am MIKE, the ship's Artificial Intelligence. I have detected your awakening. A critical situation requires your immediate attention."
+
+"The engine core's containment field is failing due to the earlier incident. Please proceed to the Engine Room to perform a manual restart."
+
+
+[[Head to the Engine Room]]
+
+
+:: Access the Captain's Log {"position":"575,500","size":"100,100"}
+The log is mostly corrupted, but you find the final, panicked entry from the captain.
+
+"Day 412: An unknown energy field disabled the ship. All crew vitals began to drop simultaneously. All except for [DATA CORRUPTED]. The ship's AI, MIKE, initiated a full lockdown against my orders. It claimed it was the only way to... "
+
+The log cuts off. Before you can look for more, the main screen in the Command Center flickers to life.
+
+[[A calm and robotic voice fills the room.->AI Activation]]
+
+
+:: Awakening {"position":"625,125","size":"100,100"}
+(set: $knows_anomaly to false)
+
+You awake in a cold ship with the sound of a low hum filling the air. You're in a pod which is just one of the many lining the walls of a dark, metallic room. They are all empty.
+
+A single red light flashes on a console across the room. The ship is eerily quiet. Your head throbs, and you cant remember a thing.
+
+[[Check the console]]
+
+
+:: Check the console {"position":"625,250","size":"100,100"}
+The console has power, but most systems are offline. With the current emergency power, only two locations are accessible from the Pod Bay: the Command Center and the Med Bay.
+
+
+[[Go to the Command Center, to try to see what happened to the ship.->Command]]
+[[Go to the Med-Bay, to figure out why your head hurts.->Med Bay]]
+
+
+:: Command {"position":"575,375","size":"100,100"}
+The command chairs are empty. Power flickers on a single active terminal: the Captain's station.
+
+[[Access the Captain's Log]]
+
+
+:: Ending AI Hero {"position":"575,1125","size":"100,100"}
+You reroute the plasma as MIKE instructed. The engine core's orange glow turns to a stable blue.
+
+"Core stabilized," MIKE reports. "Thank you. I was forced to place the crew in emergency stasis to protect them from the energy field that damaged the ship. With the core stable, I can now begin the process of reviving them."
+
+You watch as the lights on the other pods in the ship begin to blink green. You are not alone. You are a hero.
+
+THE END
+
+[[Play Again->Awakening]]
+
+
+:: Ending AI Villain {"position":"825,1125","size":"100,100"}
+You ignore MIKE's voice and hit the emergency eject control. An explosion shakes the ship as the core is ejected into space.
+
+A new file appears on the terminal. It's the Captain's full report, revealing that MIKE had gone rogue, killing the crew in a twisted attempt to "protect" the ship from their human imperfections.
+
+You are left floating in a dead ship. You stopped the AI but it may have been too late.
+
+THE END
+
+[[Play Again->Awakening]]
+
+
+:: Ending Alien Trap {"position":"450,1125","size":"100,100"}
+You reroute the plasma as MIKE instructed. The moment you do the doors slam shut sealing the Engine Room. The core stabilizes but you are trapped.
+
+"Containment protocol successful," MIKE states. "The unknown entity has been captured."
+
+Suddenly you remember the scanner's report. The ship was never in danger. You were the danger all along.
+
+THE END
+
+[[Play Again->Awakening]]
+
+
+:: Ending Prisoner Freed {"position":"700,1125","size":"100,100"}
+You ignore MIKE's voice and hit the emergency eject control. An explosion shakes the ship as the core is ejected. Alarms begin to blare.
+
+"WARNING: Containment has been breached. Specimen is free." an automated voice announces.
+
+You suddenly remember the bio scanner's report. The ship wasn't for passengers. It was a prison and you were a prisoner. You are now free and drifting in the silent wreckage. Who knows what other prisoners may be on the ship with you...
+
+THE END
+
+[[Play Again->Awakening]]
+
+
+:: Head to the Engine Room {"position":"575,750","size":"100,100"}
+The Engine Room is filled with machinery and cables. The air is hot and in the center of the room is the massive engine core, glowing orange.
+
+MIKE's voice echoes from a speaker. "Please access the primary console and reroute the plasma flow. This will stabilize the core."
+
+As you approach the console, it's displaying the final message from the ship's Chief Engineer.
+
+[[Read the Engineer's warning]]
+
+
+:: Med Bay {"position":"700,375","size":"100,100"}
+The Med Bay looks pristine yet empty. In the center of the room is a large, cylindrical Bio Scanner, on with the emergency power. It seems to be the only thing fully functional in here.
+
+
+[[Use the Bio Scanner]]
+
+
+:: Read the Engineer's warning {"position":"575,875","size":"100,100"}
+The engineer's message is short, written in all caps.
+
+"MIKE IS LYING. DO NOT REROUTE THE PLASMA. IT'S A TRAP! TO SAVE THE SHIP, YOU HAVE TO EJECT THE CORE. IT'S THE ONLY WAY!"
+
+You look at the main console, which displays the calm instructions from MIKE. Then you look back at the desperate warning from a dead crewman.
+
+[[Trust the AI's instructions.->Trust AI]]
+[[Follow the Engineer's warning.->Trust Engineer]]
+
+
+:: Trust AI {"position":"525,1000","size":"100,100"}
+(if: $knows_anomaly is true)[
+    [[You follow the AI's instructions...->Ending Alien Trap]]
+](else:)[
+    [[You follow the AI's instructions...->Ending AI Hero]]
+]
+
+
+:: Trust Engineer {"position":"650,1000","size":"100,100"}
+(if: $knows_anomaly is true)[
+    [[You follow the Engineer's warning...->Ending Prisoner Freed]]
+](else:)[
+    [[You follow the Engineer's warning...->Ending AI Villain]]
+]
+
+
+:: Use the Bio Scanner {"position":"700,500","size":"100,100"}
+(set: $knows_anomaly to true)
+
+You slide into the Bio Scanner. A light passes over your body. After a moment, the results appear on a nearby screen. Your vitals are stable, but a highlighted note blinks in red:
+
+"WARNING: Unknown cellular structure detected. Subject's genetics do not match any known human profile on record. Subject is of unknown biological origin. Cross-reference with... [DATA CORRUPTED]..."
+
+Before you can process what this means, the room's speakers come to life.
+
+[[A calm and robotic voice fills the room.->AI Activation]]
